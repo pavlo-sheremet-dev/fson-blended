@@ -1,3 +1,4 @@
+import article from 'data/article.json';
 import {
   BlogCard,
   Container,
@@ -15,9 +16,17 @@ export const App = () => {
         <Heading marginBottom="50px" textAlign="center">
           Task 1
         </Heading>
-        <BlogCard />
+        <BlogCard
+          name={article.name}
+          postedAt={article.postedAt}
+          poster={article.poster}
+          tag={article.tag}
+          title={article.title}
+          description={article.description}
+          avatar={article.avatar}
+        />
 
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
+        {/* <Heading marginTop="50px" marginBottom="50px" textAlign="center">
           Task 2
         </Heading>
         <Statistics />
@@ -29,8 +38,8 @@ export const App = () => {
 
         <Heading marginTop="50px" marginBottom="50px" textAlign="center">
           Task 4
-        </Heading>
-        <CryptoHistory />
+        </Heading> */}
+        {/* <CryptoHistory /> */}
       </Container>
     </Section>
   );
