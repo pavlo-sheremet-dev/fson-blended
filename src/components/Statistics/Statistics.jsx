@@ -4,10 +4,28 @@ import { FaRegThumbsUp } from 'react-icons/fa';
 import { MdPeople, MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { GiTreeDoor } from 'react-icons/gi';
 
-export const Statistics = () => {
+const icons = {
+  1: FaRegThumbsUp,
+  2: MdPeople,
+  3: MdOutlineProductionQuantityLimits,
+  4: GiTreeDoor,
+};
+
+export const Statistics = ({ title, stats }) => {
   return (
     <>
-      <div>StatisticsList</div>
+      <StatisticTitle>{title}</StatisticTitle>
+
+      <StatisticsList>
+        {stats.map(item => (
+          <StatisticItem
+            key={item.id}
+            total={item.total}
+            title={item.title}
+            Icon={icons[item.id]}
+          />
+        ))}
+      </StatisticsList>
     </>
   );
 };

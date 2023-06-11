@@ -4,6 +4,12 @@ import {
   StatisticCounter,
 } from './StatisticItem.styled';
 
-export const StatisticItem = () => {
-  return <div>StatisticBox</div>;
+export const StatisticItem = ({ total, title, Icon }) => {
+  return (
+    <StatisticBox>
+      <Icon />
+      <StatisticCounter>{total}</StatisticCounter>
+      <StatisticText>{title}</StatisticText>
+    </StatisticBox>
+  );
 };
