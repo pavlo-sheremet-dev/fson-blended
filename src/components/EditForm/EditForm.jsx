@@ -3,19 +3,26 @@ import { MdOutlineCancel } from 'react-icons/md';
 
 import { SearchFormStyled, FormBtn, InputSearch } from 'components';
 import { BtnEdit } from './EditForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearSelected, editTodos } from 'redux/todosSlice';
+import { selecSelectTodo } from 'redux/selectors';
 
-export const EditForm = ({ selectedTodo, editTodos, closeForm }) => {
+export const EditForm = () => {
+  const selectedTodo = useSelector(selecSelectTodo);
+
+  const dispatch = useDispatch();
   const handleSubmit = e => {
     e.preventDefault();
-    editTodos({ ...selectedTodo, text: e.target.search.value });
+    dispatch(editTodos({ ...selectedTodo, text: e.target.search.value }));
   };
+  const clearForm = () => dispatch(clearSelected());
 
   return (
     <SearchFormStyled onSubmit={handleSubmit}>
       <FormBtn type="submit">
         <RiSaveLine size="16px" />
       </FormBtn>
-      <BtnEdit type="button" onClick={closeForm}>
+      <BtnEdit type="button" onClick={clearForm}>
         <MdOutlineCancel size="16px" />
       </BtnEdit>
       <InputSearch

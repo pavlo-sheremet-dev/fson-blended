@@ -18,7 +18,18 @@ export const todosSlice = createSlice({
     findTodo: (state, action) => {
       state.selectedTodo = state.todos.find(todo => todo.id === action.payload);
     },
+    editTodos: (state, action) => {
+      //prevTodos.map(todo => (todo.id === editedTodo.id ? editedTodo : todo))
+      state.todos = state.todos.map(todo =>
+        todo.id === action.payload.id ? action.payload : todo
+      );
+      state.selectedTodo = null;
+    },
+    clearSelected: state => {
+      state.selectedTodo = null;
+    },
   },
 });
 
-export const { addTodo, deleteTodo, findTodo } = todosSlice.actions;
+export const { addTodo, deleteTodo, findTodo, editTodos, clearSelected } =
+  todosSlice.actions;
