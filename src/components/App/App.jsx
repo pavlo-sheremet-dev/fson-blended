@@ -21,11 +21,11 @@ export const App = () => {
             </TabList>
 
             <TabPanel>
-              <Gallery />
+              <Todos />
             </TabPanel>
 
             <TabPanel>
-              <Todos />
+              <Gallery />
             </TabPanel>
           </Tabs>
         </Container>
