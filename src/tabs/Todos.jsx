@@ -1,29 +1,29 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
-// import { Grid, GridItem, SearchForm, EditForm, Text, Todo } from 'components';
-import { SearchForm } from 'components';
+import { Grid, GridItem, SearchForm, EditForm, Text, Todo } from 'components';
 
-export class Todos extends Component {
-  state = {
-    todos: [],
-  };
+export function Todos() {
+  const [todos, setTodos] = useState([]);
 
-  addTodo = data => {
+  const addTodo = data => {
     const todo = {
       todoText: data.search,
       id: nanoid(),
     };
-    this.setState(prevState => {
-      return { todos: [...prevState.todos, todo] };
-    });
+
+    setTodos(prevTodo => [...prevTodo, todo]);
   };
 
-  render() {
-    console.log(this.state.todos);
-    return (
-      <>
-        <SearchForm onSubmit={this.addTodo} />
-      </>
-    );
-  }
+  return (
+    <>
+      <SearchForm onSubmit={addTodo} />
+      <Grid>
+        {todos.map((todo, index) => (
+          <GridItem key={todo.id}>
+            <Todo todo={todo} index={index + 1} />
+          </GridItem>
+        ))}
+      </Grid>
+    </>
+  );
 }
