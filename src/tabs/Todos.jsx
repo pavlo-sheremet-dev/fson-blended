@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Grid, GridItem, SearchForm, EditForm, Text, Todo } from 'components';
+// import { Grid, GridItem, SearchForm, EditForm, Text, Todo } from 'components';
+import { SearchForm } from 'components';
 
 export class Todos extends Component {
   state = {
@@ -22,8 +23,6 @@ export class Todos extends Component {
     return (
       <>
         <SearchForm onSubmit={this.addTodo} />
-
-        {JSON.stringify(this.state.todos)}
       </>
     );
   }
