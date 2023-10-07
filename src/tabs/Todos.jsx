@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
-import { Grid, GridItem, SearchForm, EditForm, Text, Todo } from 'components';
+import { Grid, GridItem, SearchForm, Todo } from 'components';
 
 const getTodos = () => {
   const todos = localStorage.getItem('todos');
