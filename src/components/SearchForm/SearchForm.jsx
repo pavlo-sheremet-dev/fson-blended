@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
 import { useDispatch } from 'react-redux';
-import { addTodo } from 'redux/todos/todos.slice';
-import { nanoid } from 'nanoid';
+import { addTodo } from 'redux/todos/todos.operations';
 
 export function SearchForm() {
   const [search, setSearch] = useState('');
@@ -20,7 +19,6 @@ export function SearchForm() {
 
     const todo = {
       todoText: search,
-      id: nanoid(),
     };
     const action = addTodo(todo);
 
