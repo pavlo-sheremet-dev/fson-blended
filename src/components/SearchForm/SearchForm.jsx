@@ -1,16 +1,18 @@
 import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ArrayHandlerContext } from 'Providers/MobileMenuProvider';
 
-export const SearchForm = ({ addTodo }) => {
+export const SearchForm = () => {
   const [search, setSearch] = useState('');
+  const { addItem } = useContext(ArrayHandlerContext);
 
   const onChange = event => {
     setSearch(event.target.value);
   };
   const onSubmit = event => {
     event.preventDefault();
-    addTodo({ search });
+    addItem({ text: search });
     setSearch('');
   };
   return (
