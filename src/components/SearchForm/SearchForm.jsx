@@ -1,11 +1,12 @@
 import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
-import { useContext, useState } from 'react';
-import { ArrayHandlerContext } from 'Providers/MobileMenuProvider';
+import { useState } from 'react';
+import { useArrayHandler } from 'Providers/MobileMenuProvider';
 
 export const SearchForm = () => {
   const [search, setSearch] = useState('');
-  const { addItem } = useContext(ArrayHandlerContext);
+
+  const { addItem } = useArrayHandler();
 
   const onChange = event => {
     setSearch(event.target.value);

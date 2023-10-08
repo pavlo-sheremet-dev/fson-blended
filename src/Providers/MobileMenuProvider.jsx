@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 export const MobileMenuContext = createContext({
   isOpen: false,
@@ -54,3 +54,5 @@ export const ArrayHandlerProvider = ({
     </ArrayHandlerContext.Provider>
   );
 };
+
+export const useArrayHandler = () => useContext(ArrayHandlerContext);

@@ -1,11 +1,10 @@
-import { useContext } from 'react';
-
 import { Grid, GridItem, SearchForm, Todo } from 'components';
 
-import { ArrayHandlerContext } from 'Providers/MobileMenuProvider';
+import { useArrayHandler } from 'Providers/MobileMenuProvider';
 
 export const Todos = () => {
-  const { array: todos } = useContext(ArrayHandlerContext);
+  // const { array: todos } = useContext(ArrayHandlerContext);
+  const { array: todos } = useArrayHandler();
 
   return (
     <div>

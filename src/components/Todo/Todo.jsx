@@ -1,11 +1,11 @@
 import { Text } from 'components';
 import { TodoWrapper, DeleteButton } from './Todo.styled';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { useContext } from 'react';
-import { ArrayHandlerContext } from 'Providers/MobileMenuProvider';
+
+import { useArrayHandler } from 'Providers/MobileMenuProvider';
 
 export const Todo = ({ text, index, id }) => {
-  const { removeItem } = useContext(ArrayHandlerContext);
+  const { removeItem } = useArrayHandler();
   return (
     <TodoWrapper>
       <Text textAlign="center" marginBottom="20px">
