@@ -12,17 +12,17 @@ export const App = () => {
         <Container>
           <Tabs>
             <TabList>
-              <Tab>
+              {/* <Tab>
                 <Text>Gallery</Text>
-              </Tab>
+              </Tab> */}
               <Tab>
                 <Text>Todos</Text>
               </Tab>
             </TabList>
 
-            <TabPanel>
+            {/* <TabPanel>
               <Gallery />
-            </TabPanel>
+            </TabPanel> */}
 
             <TabPanel>
               <Todos />

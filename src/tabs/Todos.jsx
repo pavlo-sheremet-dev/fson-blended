@@ -2,11 +2,15 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Grid, GridItem, SearchForm, Todo } from 'components';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTodos } from 'redux/todos/selectors';
 
 export const Todos = () => {
-  const [todos, setTodos] = useState(
+  const [, setTodos] = useState(
     () => JSON.parse(localStorage.getItem('todos')) ?? []
   );
+
+  const todos = useSelector(selectTodos);
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
