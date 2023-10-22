@@ -1,16 +1,24 @@
 import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
 import { useState } from 'react';
+import { addTodo } from 'redux/todos/slice';
+import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
 
-export const SearchForm = ({ addTodo }) => {
+export const SearchForm = () => {
   const [search, setSearch] = useState('');
+  const dispatch = useDispatch();
 
   const onChange = event => {
     setSearch(event.target.value);
   };
   const onSubmit = event => {
     event.preventDefault();
-    addTodo({ search });
+    const todo = {
+      id: nanoid(),
+      text: search,
+    };
+    dispatch(addTodo(todo));
     setSearch('');
   };
   return (
