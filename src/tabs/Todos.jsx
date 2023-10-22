@@ -1,23 +1,17 @@
 import { Grid, GridItem, SearchForm, Todo } from 'components';
-import { useSelector } from 'react-redux';
-import { selectTodos } from 'redux/todos/selectors';
+import { useTodos } from 'redux/todos/useTodos';
 
 export const Todos = () => {
-  
-  const todos = useSelector(selectTodos);
+  const { todos } = useTodos();
 
   return (
     <div>
-      <SearchForm/>
+      <SearchForm />
       <Grid>
         {todos.map((todo, index) => (
           <GridItem key={todo.id}>
             {' '}
-            <Todo
-              text={todo.text}
-              index={index + 1}
-              id={todo.id}
-            />
+            <Todo text={todo.text} index={index + 1} id={todo.id} />
           </GridItem>
         ))}
       </Grid>
