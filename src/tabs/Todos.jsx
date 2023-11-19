@@ -1,13 +1,21 @@
 import { nanoid } from 'nanoid';
-import { Grid, GridItem, SearchForm, EditForm, Text, Todo } from 'components';
-import { useState } from 'react';
-
+import { Grid, GridItem, SearchForm, Todo } from 'components';
+import { useState, useEffect } from 'react';
+const storageKey = 'todos';
+const savedTodos = window.localStorage.getItem(storageKey);
 export const Todos = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => JSON.parse(savedTodos) ?? []);
+
+  useEffect(() => {
+    window.localStorage.setItem(storageKey, JSON.stringify(todos));
+  }, [todos]);
 
   const generateTodo = formData => {
-    const todo = { id: nanoid(), ...formData };
-    setTodos(prevTodos => [...prevTodos, todo]);
+    setTodos(prevTodos => [...prevTodos, { id: nanoid(), ...formData }]);
+  };
+
+  const deleteTodo = todoId => {
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== todoId));
   };
 
   return (
@@ -17,7 +25,12 @@ export const Todos = () => {
         {todos.map(({ id, text }, index) => {
           return (
             <GridItem key={id}>
-              <Todo text={text} elIndex={index + 1} />
+              <Todo
+                id={id}
+                text={text}
+                elIndex={index + 1}
+                onDelete={deleteTodo}
+              />
             </GridItem>
           );
         })}

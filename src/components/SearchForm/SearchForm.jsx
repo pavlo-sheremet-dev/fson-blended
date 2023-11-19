@@ -1,5 +1,3 @@
-import { Component } from 'react';
-
 import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
 
