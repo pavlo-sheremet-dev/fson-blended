@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
-import { theme } from 'styles/theme';
 
-export const GlobalStyles = css`
+
+export const createGlobalStyles = (theme) => css`
   html {
     box-sizing: border-box;
     scroll-behavior: smooth;

@@ -13,6 +13,7 @@ export const NavBar = styled.header`
 export const HeaderWrapper = styled.nav`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: ${({ theme }) => theme.spacing(5)};
 `;
 

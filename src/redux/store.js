@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import todosReducer from './toodsSlice/todosSlice';
-import storage from 'redux-persist/lib/storage';
+import globalReducer from './global/globalSlice';
+
 import {
   persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -12,17 +12,8 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-const persistConfig = {
-  key: 'todos',
-  version: 1,
-  storage,
-  whitelist: ['todos'],
-};
-
-const persistedReducer = persistReducer(persistConfig, todosReducer);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: { global: globalReducer, todos: todosReducer },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
