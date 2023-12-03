@@ -1,13 +1,17 @@
 import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
 
-export const SearchForm = ({ generageTodo }) => {
+import { useTodos } from 'hooks/useTodos';
+
+export const SearchForm = () => {
+  const { addTodo } = useTodos();
+
   const handleSubmit = e => {
     e.preventDefault();
     const todoObject = {
       text: e.target.search.value,
     };
-    generageTodo(todoObject);
+    addTodo(todoObject);
     e.target.reset();
   };
 

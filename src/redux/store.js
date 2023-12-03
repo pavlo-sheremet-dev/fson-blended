@@ -1,23 +1,34 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-const initialState = {
-  todos: [],
+import { configureStore } from '@reduxjs/toolkit';
+import todosReducer from './toodsSlice/todosSlice';
+import storage from 'redux-persist/lib/storage';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+
+const persistConfig = {
+  key: 'todos',
+  version: 1,
+  storage,
+  whitelist: ['todos'],
 };
 
-const todoSlice = createSlice({
-  initialState,
-  name: 'todos',
-  reducers: {
-    addTodo(state, action) {
-      state.todos.push(action.payload);
-      //   state.todos = [...state.todos, action.payload];
-      //   return { ...state, todos: [...state.todos, action.payload] };
-    },
-    onDeleteTodo(state, action) {
-      state.todos = state.todos.filter(todo => todo.id !== action.payload);
-    },
-  },
+const persistedReducer = persistReducer(persistConfig, todosReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
-const todosReducer = todoSlice.reducer;
-export const { addTodo, onDeleteTodo } = todoSlice.actions;
-export const store = configureStore({ reducer: todosReducer });
+export const persistor = persistStore(store);

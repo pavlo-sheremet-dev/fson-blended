@@ -1,34 +1,22 @@
-import { nanoid } from 'nanoid';
 import { Grid, GridItem, SearchForm, Todo } from 'components';
-import { useSelector, useDispatch } from 'react-redux';
-import { addTodo, onDeleteTodo } from 'redux/store';
+import { useTodos } from 'hooks/useTodos';
+import { useEffect } from 'react';
 
 export const Todos = () => {
-  const todos = useSelector(state => state.todos);
+  const { todos, fetchContacts } = useTodos();
 
-  const dispatch = useDispatch();
-
-  const generateTodo = formData => {
-    dispatch(addTodo({ id: nanoid(), ...formData }));
-  };
-
-  const deleteTodo = todoId => {
-    dispatch(onDeleteTodo(todoId));
-  };
+  useEffect(() => {
+    fetchContacts();
+  }, [fetchContacts]);
 
   return (
     <>
-      <SearchForm generageTodo={generateTodo} />
+      <SearchForm />
       <Grid>
         {todos.map(({ id, text }, index) => {
           return (
             <GridItem key={id}>
-              <Todo
-                id={id}
-                text={text}
-                elIndex={index + 1}
-                onDelete={deleteTodo}
-              />
+              <Todo id={id} text={text} elIndex={index + 1} />
             </GridItem>
           );
         })}
